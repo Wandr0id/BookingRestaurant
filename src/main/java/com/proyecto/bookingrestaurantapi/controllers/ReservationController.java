@@ -18,7 +18,7 @@ import com.proyecto.bookingrestaurantapi.responses.BookingResponse;
 import com.proyecto.bookingrestaurantapi.services.ReservationService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins ="http://localhost:4200")
 @RequestMapping(path = "/booking-restaurant" + "/v1")
 public class ReservationController {
 	
@@ -32,7 +32,7 @@ public class ReservationController {
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "resertavion", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE )
+	@RequestMapping(value = "reservation", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE )
 	public BookingResponse<String> createReservation(@RequestBody CreateReservationRest createReservationRest) throws BookingException{
 		return new BookingResponse<>("Succes", String.valueOf(HttpStatus.OK),"OK",reservationService.createReservation(createReservationRest));
 	}

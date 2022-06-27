@@ -41,7 +41,7 @@ public class ReservationControllerTest {
 	@Before
 	public void init() throws BookingException{
 		MockitoAnnotations.initMocks(this);
-		CREATE_RESERVATION_REST.setDate(DATE);
+		CREATE_RESERVATION_REST.setDate(DATE); 
 		CREATE_RESERVATION_REST.setPerson(PERSON);
 		CREATE_RESERVATION_REST.setIdRestaurant(RESTAURANT_ID);
 		CREATE_RESERVATION_REST.setTurnId(TURN_ID);

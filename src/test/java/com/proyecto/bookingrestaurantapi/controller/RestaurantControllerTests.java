@@ -44,7 +44,7 @@ public class RestaurantControllerTests {
 	private static final RestaurantRest  RESTAURANT_REST = new RestaurantRest(); 
 	private static final List<RestaurantRest> RESTAURANT_REST_LIST = new ArrayList<>();
 	
-	@Mock
+	@Mock 
 	RestaurantService restaurantService;
 	
 	@InjectMocks 

@@ -33,6 +33,7 @@ public class Restaurant {
 	@Column(name = "IMAGEN")
 	private String image;
 	
+	
 	//relacion para las reservations
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "restaurant")
 	private List<Reservation> reservations;
@@ -44,6 +45,9 @@ public class Restaurant {
 	//relacion para los Turns
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "restaurant")
 	private List<Turn> turns;
+	
+	@Column(name = "PRICE")
+	private Long price;
 
 	public Long getId() {
 		return id;
@@ -108,6 +112,15 @@ public class Restaurant {
 	public void setTurns(List<Turn> turns) {
 		this.turns = turns;
 	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+	
 	
 	
 

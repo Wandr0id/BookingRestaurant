@@ -17,6 +17,7 @@ import com.proyecto.bookingrestaurantapi.jsons.ReservationRest;
 import com.proyecto.bookingrestaurantapi.repositories.ReservationRepository;
 import com.proyecto.bookingrestaurantapi.repositories.RestaurantRepository;
 import com.proyecto.bookingrestaurantapi.repositories.TurnRepository;
+import com.proyecto.bookingrestaurantapi.services.EmailService;
 import com.proyecto.bookingrestaurantapi.services.ReservationService;
 
 @Service
@@ -32,6 +33,9 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
 	private ReservationRepository reservationRepository;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public ReservationRest getReservation(Long reservationId) throws BookingException {
@@ -53,7 +57,10 @@ public class ReservationServiceImpl implements ReservationService{
 		reservation.setPerson(createReservationRest.getPerson());
 		reservation.setDate(createReservationRest.getDate());
 		reservation.setRestaurant(restaurantId);
-		reservation.setTurn(turn.getName());
+		reservation.setTurn(turn.getDescription());
+		reservation.setName(createReservationRest.getName());
+		reservation.setEmail(createReservationRest.getEmail());
+		
 		
 		try {
 			reservationRepository.save(reservation);
@@ -62,12 +69,28 @@ public class ReservationServiceImpl implements ReservationService{
 			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "INTERNAL_SERVER_ERROR");
 		}		
 		
+		this.emailService.processSendEmail(createReservationRest.getEmail(), "RESERVATION", createReservationRest.getName());		
 		return locator;
+	}
+	
+	@Override
+	public void updateReservation(Boolean payment, String locator) throws BookingException {
+		final Reservation reservation = reservationRepository.findByLocator(locator).orElseThrow(() -> new NotFountException("RESTAURANT_NOT_FUND","RESTAURANT_NOT_FOUND"));
+		reservation.setPayment(true);
+		try {
+			reservationRepository.save(reservation);
+		} catch (Exception e) {
+			LOGGER.error("INTERNAL_SERVER_ERROR",e);
+			throw new InternalServerErrorException("INTERNAL_SERVER_ERROR", "INTERNAL_SERVER_ERROR");
+		}
+		
 	}
 
 	private String generateLocator(Restaurant restaurantId, CreateReservationRest createReservationRest) throws BookingException{
 		return restaurantId.getName()+createReservationRest.getTurnId();
 	}
+
+	
 
 
 
