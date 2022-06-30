@@ -10,5 +10,6 @@ public interface RestaurantService {
 	RestaurantRest getRestaurantById(Long restaurantId) throws BookingException;
 	
 	public List<RestaurantRest> getRestaurants() throws BookingException;
-
+	
+	
 }

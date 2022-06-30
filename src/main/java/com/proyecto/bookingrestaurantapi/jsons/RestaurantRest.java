@@ -4,6 +4,8 @@ package com.proyecto.bookingrestaurantapi.jsons;
 
 import java.util.List;
 
+
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -27,6 +29,12 @@ public class RestaurantRest {
 	
 	@JsonProperty("turn")
 	private List<TurnRest> turns;
+	
+	@JsonProperty("price")
+	private Long price;
+
+	
+	
 
 	public Long getId() {
 		return id;
@@ -74,6 +82,14 @@ public class RestaurantRest {
 
 	public void setTurns(List<TurnRest> turns) {
 		this.turns = turns;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 	
 	

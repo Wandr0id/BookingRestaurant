@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.proyecto.bookingrestaurantapi.entities.Restaurant;
+import com.proyecto.bookingrestaurantapi.jsons.RestaurantRest;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
@@ -18,5 +19,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
 	
 	@Query("SELECT REST FROM Restaurant REST")
 	public List<Restaurant> findRestaurants();
+
+	
+
+	
 
 }

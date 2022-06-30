@@ -26,6 +26,8 @@ public class CreateReservationRest {
 	@JsonProperty("email")
 	private String email;
 	
+	
+	
 	public Date getDate() {
 		return date;
 	}

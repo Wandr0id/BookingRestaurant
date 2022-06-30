@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import com.proyecto.bookingrestaurantapi.entities.Reservation;
+import com.proyecto.bookingrestaurantapi.jsons.RestaurantRest;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long>{
@@ -21,6 +22,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	Optional<Reservation> deleteByLocator(String locator);
 	
 	Optional<Reservation> findByTurnAndRestaurantId(String turn, Long restaurantId);
+	
 	
 
 }

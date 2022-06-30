@@ -35,12 +35,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return restaurantsEntity.stream().map(service -> modelMapper.map(service, RestaurantRest.class)).collect(Collectors.toList());
 	} 
 	
-	
+
 	
 	private Restaurant getRestaurantEntity(Long restaurantId) throws BookingException{
 		return restaurantRepository.findById(restaurantId).orElseThrow(() -> new NotFountException("SNOT-404-1","RESTAURANT_NOTFOUND"));
 	}
 
+
+	
 
 
 
